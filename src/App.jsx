@@ -33,15 +33,20 @@ function App() {
   function send() {
     setStatus(true)
     axios.post("https://bulkmail-backend-uvnz.onrender.com/sendemail", { msg: msg, emailList: emailList })
-      .then(function (data) {
-        if (data.data === true) {
-          alert("Email Sent Successfully")
-          setStatus(false)
-        } else {
-          alert("Failed")
-        }
-      })
-  }
+      .then(function (res) {
+    if (res.data.success) {
+      alert("✅ Email Sent Successfully")
+    } else {
+      alert("❌ Failed to send emails")
+    }
+    setStatus(false);
+  })
+  .catch(function (err) {
+    console.error(err);
+    alert("⚠️ Error: " + err.message)
+    setStatus(false)
+  })
+}
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-pink-200 via-purple-200 to-indigo-200 flex flex-col">
