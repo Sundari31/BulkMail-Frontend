@@ -32,7 +32,7 @@ function App() {
 
   function send() {
     setStatus(true)
-    axios.post("https://bulkmail-backend-1-0azx.onrender.com/sendemail", { msg: msg, emailList: emailList })
+    axios.post("https://bulkmail-backend-1-0azx.onrender.com/", { msg: msg, emailList: emailList })
       .then(function (res) {
     if (res.data.success) {
       alert("✅ Email Sent Successfully")
